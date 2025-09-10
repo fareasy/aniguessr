@@ -6,7 +6,7 @@ class AnimeAPI:
         self.jikan=Jikan()
     
     @lru_cache(maxsize=1000)
-    def getAnimeDetails(self, animeID:int):
+    async def getAnimeDetails(self, animeID:int):
 
         details=self.jikan.anime(animeID)
 

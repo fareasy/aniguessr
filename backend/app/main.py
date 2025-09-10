@@ -2,10 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import json
-import random
-
-from routes import game,search
+from app.routes import game,search
 
 app=FastAPI()
 
@@ -21,14 +18,8 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-with open("data/top2000.json") as json_file:
-        top2000 = json.load(json_file)
-
-def get_top2000():
-    return 
-
-app.include_router(game.router,prefix="/game",tags=["game"])
-app.include_router(search.router,prefix="/search",tags=["search"])
+app.include_router(game.router,prefix="/game")
+app.include_router(search.router)
 
 @app.get("/")
 async def root():
